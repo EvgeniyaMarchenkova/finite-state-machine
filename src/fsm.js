@@ -12,8 +12,8 @@ class FSM {
             throw "Error!";
         }
 
-        this.prevState = null;
-        this.nextState = null;
+        this.prevState = false;
+        this.nextState = false;
     }
 
     /**
@@ -57,7 +57,7 @@ class FSM {
      * Resets FSM state to initial.
      */
     reset() {
-        this.states = 'normal';
+        this.activeState = 'normal';
         this.prevState = null;
         this.nextState = null;
     }
@@ -92,6 +92,7 @@ class FSM {
         if (this.prevState) {
             this.nextState = this.activeState;
             this.activeState = this.prevState;
+            return true;
         }
         else {
             return false;
@@ -107,6 +108,7 @@ class FSM {
         if (this.nextState) {
             this.prevState = this.activeState;
             this.activeState = this.nextState;
+            return true;
         }
         else {
             return false;

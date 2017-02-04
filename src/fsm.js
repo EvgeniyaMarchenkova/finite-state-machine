@@ -12,8 +12,8 @@ class FSM {
             throw "Error!";
         }
 
-        this.prevState = false;
-        this.nextState = false;
+        this.prevState = null;
+        this.nextState = null;
     }
 
     /**
@@ -92,6 +92,7 @@ class FSM {
         if (this.prevState) {
             this.nextState = this.activeState;
             this.activeState = this.prevState;
+            this.prevState = null;
             return true;
         }
         else {
@@ -108,6 +109,7 @@ class FSM {
         if (this.nextState) {
             this.prevState = this.activeState;
             this.activeState = this.nextState;
+            this.nextState = null;
             return true;
         }
         else {

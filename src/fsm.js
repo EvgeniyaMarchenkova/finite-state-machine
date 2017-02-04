@@ -9,7 +9,7 @@ class FSM {
             this.activeState = config.initial;
         }
         else {
-            error("states");
+            errorFunc();
         }
         this.prevState = null;
         this.nextState = null;
@@ -32,7 +32,7 @@ class FSM {
             this.activeState = state;
         }
         else {
-            error("state");
+            errorFunc();
         }
     }
 
@@ -127,8 +127,8 @@ class FSM {
         this.prevState = null;
         this.nextState = null;
     }
-    Error(value) {
-        throw value + "error";
+    errorFunc() {
+        throw "Error";
     }
 }
 

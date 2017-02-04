@@ -32,9 +32,8 @@ class FSM {
             this.activeState = state;
         }
         else {
-            throw "Error!";
+            throw 'Ewq';
         }
-
     }
 
     /**
@@ -44,10 +43,10 @@ class FSM {
     trigger(event) {
         this.prevState = this.activeState;
         for ( var x in  this.states) {
-            if (this.states.x == this.activeState) {
-                for (var y in this.states.x.transitions) {
-                    if (y = event) {
-                        this.activeState = this.states.x.transitions.y;
+            if (x == this.activeState) {
+                for (var y in this.states[x].transitions){
+                    if (y == event) {
+                        this.activeState = this.states[x].transitions[y];
                     }
                 }
             }
@@ -58,8 +57,9 @@ class FSM {
      * Resets FSM state to initial.
      */
     reset() {
-        this.states = config.states;
+        this.states = 'normal';
         this.prevState = null;
+        this.nextState = null;
     }
 
     /**

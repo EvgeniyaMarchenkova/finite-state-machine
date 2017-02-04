@@ -9,9 +9,8 @@ class FSM {
             this.activeState = config.initial;
         }
         else {
-            throw "Error!";
+            error("states");
         }
-
         this.prevState = null;
         this.nextState = null;
     }
@@ -29,10 +28,11 @@ class FSM {
      */
     changeState(state) {
         if (state) {
+            this.prevState = this.activeState;
             this.activeState = state;
         }
         else {
-            throw 'Ewq';
+            error("state");
         }
     }
 
@@ -70,13 +70,16 @@ class FSM {
      */
     getStates(event) {
         if (event) {
-            if (event in this.states) {
-
-
-            }
-            else {
-                return [];
-            }
+                var arrEvents=[];
+                for (var x in  this.states) {
+                    if (event in this.states[x].transitions) {
+                        arrEvents.push(x);
+                        return arrEvents;
+                    }
+                    else {
+                        return [];
+                    }
+                }
         }
         else {
             return Object.keys(this.states);
@@ -123,6 +126,9 @@ class FSM {
     clearHistory() {
         this.prevState = null;
         this.nextState = null;
+    }
+    Error(value) {
+        throw value + "error";
     }
 }
 

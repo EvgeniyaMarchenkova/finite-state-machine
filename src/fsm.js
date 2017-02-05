@@ -74,16 +74,13 @@ class FSM {
         if (event) {
                 var arrEvents=[];
                 for (var x in  this.states) {
-
                     if (Object.keys(this.states[x].transitions).includes(event))
                         {
                             arrEvents.push(x);
-                            return arrEvents;
                         }
-                    else {
-                        return [];
-                    }
                 }
+                return arrEvents;
+                return [];
         }
         else {
             return Object.keys(this.states);

@@ -27,7 +27,7 @@ class FSM {
      * @param state
      */
     changeState(state) {
-        if (state) {
+        if (Object.keys(this.states).includes(state)) {
             this.prevState = this.activeState;
             this.activeState = state;
         }
@@ -42,6 +42,7 @@ class FSM {
      */
     trigger(event) {
         this.prevState = this.activeState;
+
         for ( var x in  this.states) {
             if (x == this.activeState) {
                 for (var y in this.states[x].transitions){
@@ -128,7 +129,7 @@ class FSM {
         this.nextState = null;
     }
     errorFunc() {
-        throw "Error";
+        throw Error;
     }
 }
 

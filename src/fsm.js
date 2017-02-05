@@ -42,16 +42,17 @@ class FSM {
      */
     trigger(event) {
         this.prevState = this.activeState;
-
         for ( var x in  this.states) {
             if (x == this.activeState) {
                 for (var y in this.states[x].transitions){
                     if (y == event) {
                         this.activeState = this.states[x].transitions[y];
+                        return;
                     }
                 }
             }
         }
+        errorFunc();
     }
 
     /**
@@ -73,10 +74,12 @@ class FSM {
         if (event) {
                 var arrEvents=[];
                 for (var x in  this.states) {
-                    if (event in this.states[x].transitions) {
-                        arrEvents.push(x);
-                        return arrEvents;
-                    }
+
+                    if (Object.keys(this.states[x].transitions).includes(event))
+                        {
+                            arrEvents.push(x);
+                            return arrEvents;
+                        }
                     else {
                         return [];
                     }
